@@ -1,4 +1,4 @@
-# 🎓 Smart Academic Assistant — Full-Stack Educational Portal
+# 🎓 Smart Academic Assistant — Full-Stack AI Powered Educational Portal
 
 An advanced, premium university management and learning portal designed with a high-contrast luxury aesthetic. It features a headlining Learner Management System (LMS), an AI-powered course assistant utilizing Retrieval-Augmented Generation (RAG) via a Large Language Model (LLM), a smart prerequisite-based registration simulator, an interactive Quiz System, and custom administrative controls.
 
