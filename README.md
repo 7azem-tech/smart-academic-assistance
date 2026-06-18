@@ -21,7 +21,7 @@ An advanced, premium university management and learning portal designed with a h
 | **Frontend** | React 18, Vite, TypeScript, Tailwind CSS, Framer Motion |
 | **Backend** | Node.js, Express.js, Socket.io (WebSockets) |
 | **Database** | SQLite3 (Metadata, chunks, and Vector Embeddings) |
-| **AI Integration** | Large Language Model (LLM) API |
+| **AI Integration** | Large Language Model (LLM) |
 | **Document Parsing**| `pdf-parse`, `multer` (file handling) |
 
 ---
@@ -31,7 +31,7 @@ An advanced, premium university management and learning portal designed with a h
 ```text
 project-root/
 ├── backend/
-│   ├── server.js             # Express API server (AI RAG & Uploads)
+│   ├── server.js             # Express server (AI RAG & Uploads)
 │   ├── vector_db.sqlite      # SQLite database storing data & embeddings
 │   ├── uploads/              # Local file upload storage
 │   └── package.json          # Backend package dependencies
@@ -53,7 +53,6 @@ Follow these steps to configure the project on your local machine:
 
 ### Prerequisites
 - [Node.js](https://nodejs.org/) (version `18.0.0` or higher recommended)
-- An AI Model API Key
 
 ### 1. Install Dependencies
 Install all package dependencies for the project. Run the following command in the **root** folder:
@@ -68,13 +67,7 @@ npm install
 cd ..
 ```
 
-### 2. Configure Environment Variables
-Create a `.env` file in your **backend** directory (or root, depending on setup) or add your API key directly in `backend/server.js`:
-```env
-GEMINI_API_KEY=your_api_key_here
-```
-
-### 3. Run the Servers Concurrently
+### 2. Run the Servers Concurrently
 From the **root** directory of the project, run:
 ```bash
 npm run dev
