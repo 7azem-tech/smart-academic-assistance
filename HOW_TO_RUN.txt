@@ -1,0 +1,66 @@
+========================================================================
+                 AI-POWERED SMART ACADEMIC PORTAL
+                 How to Run the Project Locally
+========================================================================
+
+Follow these steps to set up and run both the Frontend (React/Vite)
+and Backend (Express/SQLite) systems on your local environment.
+
+------------------------------------------------------------------------
+Prerequisites
+------------------------------------------------------------------------
+Before you start, make sure you have:
+1. Node.js (version 18.0.0 or higher recommended) installed.
+   Download: https://nodejs.org/
+2. A terminal shell (Powershell, Command Prompt, or terminal in VS Code).
+
+------------------------------------------------------------------------
+Step 1: Install Root/Frontend Dependencies
+------------------------------------------------------------------------
+1. Open your terminal in the project's root folder.
+2. Run the following command to install the frontend dependencies and 
+   the concurrency utility:
+   
+   npm install
+
+------------------------------------------------------------------------
+Step 2: Install Backend Dependencies
+------------------------------------------------------------------------
+1. Navigate to the backend directory:
+   
+   cd backend
+
+2. Run the following command to install the database (SQLite), WebSockets 
+   (Socket.io), file parser, and routing utilities:
+   
+   npm install
+
+3. Once installation completes, return to the project root directory:
+   
+   cd ..
+
+------------------------------------------------------------------------
+Step 3: Run the Project
+------------------------------------------------------------------------
+1. From the project root directory, run the concurrent startup script:
+   
+   npm run dev
+
+2. This script will automatically start:
+   - The Vite development server on: http://localhost:3000/
+   - The Node/Express API server on: http://localhost:3005/
+   
+3. Open your browser and navigate to:
+   
+   http://localhost:3000/
+
+------------------------------------------------------------------------
+Configuration & Data Persistence
+------------------------------------------------------------------------
+- Database: All courses, forums, alerts, setting states, and vector 
+  embeddings are persistently stored locally in the sqlite file:
+  `backend/vector_db.sqlite`
+- Uploads: Any PDF course documents or assignments uploaded by students 
+  and instructors are saved on disk in:
+  `backend/uploads/`
+========================================================================

@@ -1,0 +1,9 @@
+node_modules
+build
+dist
+*.log
+build_log.txt
+ts_errors.txt
+.env
+.env.*
+.DS_Store
