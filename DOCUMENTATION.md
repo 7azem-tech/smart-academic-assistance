@@ -1,7 +1,7 @@
 # Smart Academic Assistant Design - Project Documentation
 
 ## 1. Project Overview
-A comprehensive, premium educational platform designed with a modern and luxury aesthetic. It integrates a Learner Management System (LMS), Academic Roadmap, Smart Registration simulator, an AI-powered subject-based Chatbot (using RAG with Google Gemini), a customizable Quiz System, and an Alerts Center with WhatsApp integration.
+A comprehensive, premium educational platform designed with a modern and luxury aesthetic. It integrates a Learner Management System (LMS), Academic Roadmap, Smart Registration simulator, an AI-powered subject-based Chatbot (using RAG with a Large Language Model), a customizable Quiz System, and an Alerts Center with WhatsApp integration.
 
 ## 2. Tech Stack & Technologies
 ### Frontend
@@ -15,14 +15,14 @@ A comprehensive, premium educational platform designed with a modern and luxury 
 ### Backend (RAG Server)
 - **Environment:** Node.js, Express.js
 - **Database:** SQLite3 (`vector_db.sqlite`) for storing document metadata, text chunks, and vector embeddings
-- **AI Integration:** Google Gemini API (`gemini-embedding-001` and `gemini-2.5-flash`)
+- **AI Integration:** Large Language Model (LLM) API
 - **Document Processing:** `pdf-parse` for text extraction, `multer` for multipart form file uploads
 
 ## 3. Project Architecture & Folder Structure
 ```text
 project-root/
 ├── backend/
-│   ├── server.js             # Express API server (PDF uploads & Gemini RAG logic)
+│   ├── server.js             # Express API server (PDF uploads & LLM RAG logic)
 │   ├── vector_db.sqlite      # SQLite vector database for embeddings
 │   └── uploads/              # Local temporary folder for PDF uploads
 ├── src/
@@ -32,7 +32,7 @@ project-root/
 │   │   ├── Login.tsx               # Authentication gateway
 │   │   ├── AcademicRoadmap.tsx     # Student progress & subjects tracking
 │   │   ├── LMS.tsx                 # Learning Management System functionality
-│   │   ├── CoursesChat.tsx         # Specific subject-based AI Chatbots via Gemini API
+│   │   ├── CoursesChat.tsx         # Specific subject-based AI Chatbots via LLM API
 │   │   ├── SmartRegistration.tsx   # Simulator for smart, prerequisite-based registration
 │   │   ├── Alerts.tsx              # Application-wide alerts and announcements
 │   │   ├── WhatsAppAlertModal.tsx  # WhatsApp messaging modal using Wasender API
@@ -41,12 +41,12 @@ project-root/
 │   │   ├── Sidebar.tsx             # Main navigation layout
 │   │   └── ui/                     # Reusable Radix UI and Tailwind interface primitives
 │   ├── contexts/
-│   │   ├── AuthContext.tsx         # Provides logged-in user state & role-based validation
-│   │   ├── SettingsContext.tsx     # Centralized app configuration and persistence
-│   │   └── CompactViewContext.tsx  # Accessibility/UI scaling context
-│   ├── App.tsx                     # Main application entry point & UI router
-│   ├── main.tsx                    # React DOM renderer
-│   └── index.css                   # Global styles & Tailwind CSS injections
+│   ├── AuthContext.tsx         # Provides logged-in user state & role-based validation
+│   ├── SettingsContext.tsx     # Centralized app configuration and persistence
+│   └── CompactViewContext.tsx  # Accessibility/UI scaling context
+├── App.tsx                     # Main application entry point & UI router
+├── main.tsx                    # React DOM renderer
+└── index.css                   # Global styles & Tailwind CSS injections
 ├── package.json                    # Project dependencies and script definitions
 └── vite.config.ts                  # Vite bundler configuration
 ```
@@ -60,8 +60,8 @@ project-root/
 ### 4.2. Subject-Based AI Chatbots (Retrieval-Augmented Generation)
 - Configured via the `backend/server.js` module.
 - Admins upload PDF course materials per subject directly via the UI tools in `AdminDashboard.tsx`.
-- The Node.js server extracts the text, segments it into chunks, and fetches dense vector embeddings through Google's `gemini-embedding-001` to be persistently stored in `vector_db.sqlite`.
-- Students querying within `CoursesChat.tsx` trigger a cosine-similarity search against these embeddings, supplying the most relevant passages as context to `gemini-2.5-flash` for rich, deeply analytical, and academically sourced answers with exact page citations.
+- The Node.js server extracts the text, segments it into chunks, and fetches dense vector embeddings through an embedding API to be persistently stored in `vector_db.sqlite`.
+- Students querying within `CoursesChat.tsx` trigger a cosine-similarity search against these embeddings, supplying the most relevant passages as context to the Large Language Model (LLM) for rich, deeply analytical, and academically sourced answers with exact page citations.
 
 ### 4.3. Smart Registration Simulator
 - Designed within `SmartRegistration.tsx` to allow educators or administrators to safely simulate a student's academic path.
@@ -84,8 +84,8 @@ project-root/
    npm install
    ```
 3. **Configure the AI Key:**
-   - Obtain a Google Gemini API Key.
-   - Inject the `GEMINI_API_KEY` into `backend/server.js` (or use an `.env` file abstraction if upgrading scalability).
+   - Obtain an AI Model API Key.
+   - Inject the `GEMINI_API_KEY` environment variable into `backend/server.js` (or use an `.env` file abstraction if upgrading scalability).
 4. **Boot the environment:**
    ```bash
    npm run dev
