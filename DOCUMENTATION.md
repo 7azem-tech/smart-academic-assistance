@@ -15,14 +15,14 @@ A comprehensive, premium educational platform designed with a modern and luxury 
 ### Backend (RAG Server)
 - **Environment:** Node.js, Express.js
 - **Database:** SQLite3 (`vector_db.sqlite`) for storing document metadata, text chunks, and vector embeddings
-- **AI Integration:** Large Language Model (LLM) API
+- **AI Integration:** Large Language Model (LLM)
 - **Document Processing:** `pdf-parse` for text extraction, `multer` for multipart form file uploads
 
 ## 3. Project Architecture & Folder Structure
 ```text
 project-root/
 ├── backend/
-│   ├── server.js             # Express API server (PDF uploads & LLM RAG logic)
+│   ├── server.js             # Express server (PDF uploads & LLM RAG logic)
 │   ├── vector_db.sqlite      # SQLite vector database for embeddings
 │   └── uploads/              # Local temporary folder for PDF uploads
 ├── src/
@@ -32,7 +32,7 @@ project-root/
 │   │   ├── Login.tsx               # Authentication gateway
 │   │   ├── AcademicRoadmap.tsx     # Student progress & subjects tracking
 │   │   ├── LMS.tsx                 # Learning Management System functionality
-│   │   ├── CoursesChat.tsx         # Specific subject-based AI Chatbots via LLM API
+│   │   ├── CoursesChat.tsx      # Specific subject-based AI Chatbots via LLM
 │   │   ├── SmartRegistration.tsx   # Simulator for smart, prerequisite-based registration
 │   │   ├── Alerts.tsx              # Application-wide alerts and announcements
 │   │   ├── WhatsAppAlertModal.tsx  # WhatsApp messaging modal using Wasender API
@@ -60,7 +60,7 @@ project-root/
 ### 4.2. Subject-Based AI Chatbots (Retrieval-Augmented Generation)
 - Configured via the `backend/server.js` module.
 - Admins upload PDF course materials per subject directly via the UI tools in `AdminDashboard.tsx`.
-- The Node.js server extracts the text, segments it into chunks, and fetches dense vector embeddings through an embedding API to be persistently stored in `vector_db.sqlite`.
+- The Node.js server extracts the text, segments it into chunks, and fetches dense vector embeddings to be persistently stored in `vector_db.sqlite`.
 - Students querying within `CoursesChat.tsx` trigger a cosine-similarity search against these embeddings, supplying the most relevant passages as context to the Large Language Model (LLM) for rich, deeply analytical, and academically sourced answers with exact page citations.
 
 ### 4.3. Smart Registration Simulator
@@ -73,7 +73,7 @@ project-root/
 
 ### 4.5. Alerts Center & WhatsApp Integration
 - `Alerts.tsx` tracks global notifications.
-- The `WhatsAppAlertModal.tsx` incorporates third-party Wasender API bindings directly into the frontend, permitting broadcast or targeted direct messaging to specific numbers natively.
+- The `WhatsAppAlertModal.tsx` incorporates third-party WhatsApp integration directly into the frontend, permitting broadcast or targeted direct messaging to specific numbers natively.
 
 ## 5. Setup & Installation
 1. **Ensure environment prerequisites are met:**
@@ -83,10 +83,7 @@ project-root/
    ```bash
    npm install
    ```
-3. **Configure the AI Key:**
-   - Obtain an AI Model API Key.
-   - Inject the `GEMINI_API_KEY` environment variable into `backend/server.js` (or use an `.env` file abstraction if upgrading scalability).
-4. **Boot the environment:**
+3. **Boot the environment:**
    ```bash
    npm run dev
    ```
